@@ -13,14 +13,33 @@ this is a simple project can be used as a seed of rest api projects using flask
     ```
 - run command to install required libs and frameworks
     ```
-    pip install flask
+    pip install -r requirements.txt
+    ```
+
+## setting up the database
+- create a Postgres database with login user
+- the connection string of the database should like below
+    ```
+    postgresql://<user>:<password>@<db-host>:<port>/<database>
+    ```
+
+## setting up environment variables
+- create in the root directory **.env** file
+- open **.env.example** file, copy all variables names and paste them in the **.env** file
+- fill the variables names with their values to match your development environment, like the database uri, paste in it the connection string
+
+## database migrations
+- make sure you are in the project directory
+- make sure you have the **DATABASE_URI** in **.env** has value
+- make sure the virtual environment activated
+- run these cmds:
+    ```
+    ./bootstrap.sh init
+    ./bootstrap.sh migrate
+    ./bootstrap.sh upgrade
     ```
 
 ## run flask app
-- give permissions to **bootstrap.sh** shell scripts
-    ```
-    chmod +x bootstrap.sh
-    ```
 - run command
     ```
     ./bootstrap.sh
