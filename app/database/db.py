@@ -1,4 +1,4 @@
-from sqlalchemy import MetaData
+from sqlalchemy import MetaData, orm, engine
 
 
 convention = {
@@ -10,3 +10,7 @@ convention = {
 }
 
 metadata = MetaData(naming_convention=convention)
+
+# marshmallow sqlalchemy can't load the data without session
+Session = orm.scoped_session(orm.sessionmaker())
+Session.configure(bind=engine)
