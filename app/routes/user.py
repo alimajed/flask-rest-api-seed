@@ -2,6 +2,7 @@ from flask import Blueprint, request
 
 from app.database.models.user import UserModel
 from app.schemas.user import UserSchema
+from app.herlpers.localization import gettext
 
 
 user_bp = Blueprint("user", __name__)
@@ -14,7 +15,7 @@ def create_user():
     user = user_schema.load(user_json)
 
     if UserModel.find_by_email(user.email):
-        return {"message": "user already exists"}, 409
+        return {"message": gettext("user_exists")}, 409
     
     user.save_to_db()
-    return {"message": "user created"}, 201
+    return user_schema.dump(user), 201
