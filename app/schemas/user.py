@@ -3,7 +3,6 @@ from app.schemas.base import BaseModelSchema
 
 
 class UserSchema(BaseModelSchema):
-    __envelope__ = {"single": "user", "many": "users"}
 
     class Meta(BaseModelSchema.Meta):
         model = UserModel

@@ -2,7 +2,7 @@
 this is a simple project can be used as a seed of rest api projects using flask
 
 ## setting up the enviroment
-- make sure you have python 3.8+ (newest versio)
+- make sure you have python 3.8+ (newest version)
 - create a new virtual environment, prefered in the project directory under name **.venv**
     ```
     python -m venv .venv

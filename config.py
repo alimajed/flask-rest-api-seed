@@ -19,6 +19,7 @@ class ConfigFactory:
 class Config:
     """base config class contains same configurations in all environments"""
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    JWT_SECRET_KEY = getenv("JWT_SECRET_KEY")
 
 
 class Development(Config):
