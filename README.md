@@ -44,3 +44,16 @@ this is a simple project can be used as a seed of rest api projects using flask
     ```
     ./bootstrap.sh
     ```
+
+## run on Docker container
+- make sure you are in the project directory
+- make sure you have the **DATABASE_DOCKER_URI** in **.env** has value
+- to run docker web and database in containers using docker compose:
+    - to build the images:
+        ```
+        docker-compose build
+        ```
+    - to run the images:
+        ```
+        docker-compose up
+        ```

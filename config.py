@@ -12,6 +12,8 @@ class ConfigFactory:
 
         if env in ["development"]:
             return Development()
+        elif env in ["docker"]:
+            return Docker()
 
     factory = staticmethod(factory)
 
@@ -26,3 +28,8 @@ class Development(Config):
     DEBUG = True
     TESTING = False
     SQLALCHEMY_DATABASE_URI = getenv('DATABASE_URI')
+
+class Docker(Config):
+    DEBUG = True
+    TESTING = False
+    SQLALCHEMY_DATABASE_URI = getenv('DATABASE_DOCKER_URI')
