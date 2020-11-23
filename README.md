@@ -57,3 +57,12 @@ this is a simple project can be used as a seed of rest api projects using flask
         ```
         docker-compose up
         ```
+
+## tests
+
+- make sure you are in the project directory
+- create a new database for testing, here we create new database for testing, and we have ***DATABASE_TESTING_URI*** in **.env**
+- run this cmd:
+    ```
+    ./test.sh
+    ```

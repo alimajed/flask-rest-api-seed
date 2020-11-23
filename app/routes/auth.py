@@ -23,7 +23,6 @@ def authenticate():
     if user and user.is_correct_password(auth_creds["password"]):
         access_token = create_access_token(identity=user.email)
         user_json = user_schema.dump(user)
-        print(user_json)
         return auth_response_schema.dump({
             "access_token": access_token,
             "user": user
