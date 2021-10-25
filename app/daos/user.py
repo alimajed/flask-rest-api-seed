@@ -25,6 +25,10 @@ class UserDAO(BaseDAO):
         self.session.commit()
         return user
 
+    def delete_user(self, user):
+        self.session.delete(user)
+        self.session.commit()
+
     def _find_by_email(self, _email):
         return self.session.query(self.model).filter_by(email=_email).first()
 

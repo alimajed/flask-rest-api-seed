@@ -11,6 +11,6 @@ def home():
 
 
 @home_bp.route("/protected", methods=["GET"])
-@jwt_required
+@jwt_required( )
 def protected_home():
     return "Hello World from Protected", 200

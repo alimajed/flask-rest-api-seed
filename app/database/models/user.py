@@ -12,7 +12,7 @@ class UserModel(BaseModel):
     last_name = Column(String(100), nullable=False)
     date_of_birth = Column(Date, nullable=False)
     email = Column(String(100), nullable=False, unique=True)
-    password = Column(String(100), nullable=False)
+    password = Column(String(300), nullable=False)
 
     def __init__(self, first_name, last_name, date_of_birth, email, password):
         self.first_name = first_name

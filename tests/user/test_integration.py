@@ -2,6 +2,7 @@ from datetime import date
 
 from tests.config import app_inst
 from app.database.models.user import UserModel
+from app.daos.user import user_dao
 
 
 def test_crud(app_inst):
@@ -10,10 +11,10 @@ def test_crud(app_inst):
 
         assert UserModel.find_by_email("alimajed1991+2@gmail.com") is None
 
-        user.save_to_db()
+        user_dao.create_user(user)
 
         assert UserModel.find_by_email("alimajed1991+2@gmail.com") is not None
         
-        user.delete_from_db()
+        user_dao.delete_user(user)
 
         assert UserModel.find_by_email("alimajed1991+2@gmail.com") is None

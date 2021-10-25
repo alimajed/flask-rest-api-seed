@@ -4,6 +4,7 @@ from datetime import date
 from tests.config import app_inst
 from tests.helpers import json_serial
 from app.database.models.user import UserModel
+from app.daos.user import user_dao
 
 
 def test_create_user(app_inst):
@@ -26,7 +27,8 @@ def test_create_user(app_inst):
 
 def test_user_sign_in(app_inst):
     with app_inst.test_client() as c:
-        UserModel("ali", "majed", date(1991,3,26), "alimajed1991+4@gmail.com", "password123").save_to_db()
+        user = UserModel("ali", "majed", date(1991,3,26), "alimajed1991+4@gmail.com", "password123")
+        user_dao.create_user(user)
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
@@ -40,7 +42,8 @@ def test_user_sign_in(app_inst):
 
 def test_user_auth(app_inst):
     with app_inst.test_client() as c:
-        UserModel("ali", "majed", date(1991,3,26), "alimajed1991+5@gmail.com", "password123").save_to_db()
+        user = UserModel("ali", "majed", date(1991,3,26), "alimajed1991+5@gmail.com", "password123")
+        user_dao.create_user(user)
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
