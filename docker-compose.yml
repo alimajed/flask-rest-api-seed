@@ -1,8 +1,10 @@
-version: "3.5"
+version: "3"
 
 services:
     web:
-        build: .
+        build:
+            context: .
+            dockerfile: ./compose/web/Dockerfile
         depends_on:
             - db
         ports:
@@ -12,18 +14,20 @@ services:
         volumes:
             - ./:/webapp/
             - ./migrations:/webapp/migrations
+        env_file:
+            - dev.env
         restart: always
+        entrypoint: sh entrypoint.sh
     db:
-        environment:
-            # postgres://:@/flask-rest-api-db
-            POSTGRES_USER: flask-rest-api-db-user
-            POSTGRES_PASSWORD: 123456
-            POSTGRES_DB: flask-rest-api-db
-        image: postgres:latest
+        build: 
+            context: .
+            dockerfile: ./compose/postgres/Dockerfile
         networks:
             - default
         ports:
             - 5405:5432
+        env_file:
+            - dev.env
         restart: always
         volumes:
             - ./postgres-data:/var/lib/postgresql/data
