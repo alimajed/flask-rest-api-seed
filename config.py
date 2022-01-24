@@ -12,8 +12,6 @@ class ConfigFactory:
 
         if env in ["development"]:
             return Development()
-        elif env in ["docker"]:
-            return Docker()
         elif env in ["testing"]:
             return Testing()
 
@@ -29,13 +27,11 @@ class Config:
 class Development(Config):
     DEBUG = True
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = getenv('DATABASE_URI')
+    POSTGRES_USER = getenv('POSTGRES_USER')
+    POSTGRES_PASSWORD = getenv('POSTGRES_PASSWORD')
+    POSTGRES_DB = getenv('POSTGRES_DB')
+    SQLALCHEMY_DATABASE_URI = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@db/{POSTGRES_DB}"
 
-
-class Docker(Config):
-    DEBUG = True
-    TESTING = False
-    SQLALCHEMY_DATABASE_URI = getenv('DATABASE_DOCKER_URI')
 
 
 class Testing(Config):
